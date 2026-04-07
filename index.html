@@ -272,9 +272,7 @@
 </footer>
 
 <script>
-const API_KEY = "HhfUnWU4CARp2LDEgzPCcPqrs";
-const FEED = "Port Authority Bus";
-const BASE = "https://truetime.portauthority.org/bustime/api/v3";
+const WORKER = "https://prt-bus-proxy.michaelcheungkm.workers.dev";
 
 const QUERIES = [
   { route: "71A", stop: "2571" },
@@ -297,16 +295,8 @@ function minsLabel(arr, delayed) {
 }
 
 async function fetchRoute(route, stop) {
-  const params = new URLSearchParams({
-    key: API_KEY,
-    stpid: stop,
-    rt: route,
-    rtpidatafeed: FEED,
-    format: "json",
-    tmres: "m",
-    top: 2
-  });
-  const res = await fetch(BASE + "/getpredictions?" + params);
+  const params = new URLSearchParams({ stpid: stop, rt: route });
+  const res = await fetch(WORKER + "?" + params);
   return (await res.json())["bustime-response"];
 }
 
