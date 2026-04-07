@@ -323,10 +323,18 @@ function renderCard(route, btr) {
 
   deps.innerHTML = preds.map(p => {
     const raw = p.prdtm;
-    const y = raw.slice(0,4), mo = raw.slice(4,6), d = raw.slice(6,8), h = raw.slice(9,11), m = raw.slice(11,13);
-    const arr = new Date(y + "-" + mo + "-" + d + "T" + h + ":" + m + ":00");
-    const timeStr = arr.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
-    const ml = minsLabel(arr, p.dly);
+    let arr;
+    try {
+      // Handle both "20260407 14:32" and "4/7/2026 14:32" formats
+      if (raw && raw.match(/^\d{8} \d{2}:\d{2}/)) {
+        const y = raw.slice(0,4), mo = raw.slice(4,6), d = raw.slice(6,8), h = raw.slice(9,11), m = raw.slice(11,13);
+        arr = new Date(y + "-" + mo + "-" + d + "T" + h + ":" + m + ":00");
+      } else {
+        arr = new Date(raw);
+      }
+    } catch(e) { arr = new Date(); }
+    const timeStr = isNaN(arr) ? raw : arr.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
+    const ml = isNaN(arr) ? { text: "?", cls: "later" } : minsLabel(arr, p.dly);
     return '<div class="departure">' +
       '<div class="dep-dest">' + p.des + '</div>' +
       '<div class="dep-right">' +
