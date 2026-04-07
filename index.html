@@ -113,18 +113,18 @@ const QUERIES = [
 ];
 
 function parsePrdtm(raw) {
-  // Format: "20260407 14:42" - parse manually to avoid browser timezone issues
+  // Format: "20260407 14:42" — positions: date=0-7, space=8, hour=9-10, colon=11, min=12-13
   var yy = parseInt(raw.slice(0,4));
   var mo = parseInt(raw.slice(4,6)) - 1;
   var dd = parseInt(raw.slice(6,8));
   var hh = parseInt(raw.slice(9,11));
-  var mn = parseInt(raw.slice(11,13));
+  var mn = parseInt(raw.slice(12,14));
   return new Date(yy, mo, dd, hh, mn, 0);
 }
 
 function formatTime(raw) {
   var hh = parseInt(raw.slice(9,11));
-  var mn = parseInt(raw.slice(11,13));
+  var mn = parseInt(raw.slice(12,14));
   var ampm = hh >= 12 ? "PM" : "AM";
   var h12 = hh % 12 || 12;
   return h12 + ":" + (mn < 10 ? "0" : "") + mn + " " + ampm;
