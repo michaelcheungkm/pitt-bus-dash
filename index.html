@@ -7,7 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
   :root {
     --bg: #0a0a0f;
     --surface: #13131a;
@@ -16,196 +15,41 @@
     --muted: #5a5a78;
     --accent: #4f8ef7;
     --green: #3ecf6a;
-    --amber: #f5a623;
     --red: #f75555;
     --prt-yellow: #f5c518;
   }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    min-height: 100vh;
-    padding: 2rem 2.5rem;
-    overflow-x: hidden;
-  }
-
-  header {
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    margin-bottom: 2.5rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--border);
-  }
-
+  body { background: var(--bg); color: var(--text); font-family: 'DM Sans', sans-serif; min-height: 100vh; padding: 2rem 2.5rem; overflow-x: hidden; }
+  header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
   .header-left { display: flex; align-items: center; gap: 1rem; }
-
-  .logo {
-    width: 44px; height: 44px;
-    background: var(--prt-yellow);
-    border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-  }
-
+  .logo { width: 44px; height: 44px; background: var(--prt-yellow); border-radius: 10px; display: flex; align-items: center; justify-content: center; }
   .logo svg { width: 26px; height: 26px; fill: #0a0a0f; }
-
-  h1 {
-    font-size: 1.5rem;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: var(--text);
-  }
-
+  h1 { font-size: 1.5rem; font-weight: 500; letter-spacing: -0.02em; color: var(--text); }
   h1 span { color: var(--muted); font-weight: 300; }
-
-  .clock {
-    font-family: 'DM Mono', monospace;
-    font-size: 2rem;
-    font-weight: 400;
-    color: var(--text);
-    letter-spacing: -0.02em;
-  }
-
-  .status-bar {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 0.75rem;
-    color: var(--muted);
-    margin-top: 0.25rem;
-    justify-content: flex-end;
-  }
-
-  .live-dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: pulse 2s infinite;
-  }
-
+  .clock { font-family: 'DM Mono', monospace; font-size: 2rem; font-weight: 400; color: var(--text); letter-spacing: -0.02em; }
+  .status-bar { display: flex; align-items: center; gap: 6px; font-size: 0.75rem; color: var(--muted); margin-top: 0.25rem; justify-content: flex-end; }
+  .live-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
   @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.25rem;
-  }
-
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
   .stop-section { display: flex; flex-direction: column; gap: 1rem; }
-
-  .stop-label {
-    font-size: 0.7rem;
-    font-family: 'DM Mono', monospace;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    padding-left: 2px;
-  }
-
-  .route-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1.25rem 1.5rem;
-    transition: border-color 0.3s;
-  }
-
+  .stop-label { font-size: 0.7rem; font-family: 'DM Mono', monospace; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; padding-left: 2px; }
+  .route-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 1.25rem 1.5rem; }
   .route-card.loading { opacity: 0.5; }
-
-  .route-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 1rem;
-  }
-
-  .route-badge {
-    font-family: 'DM Mono', monospace;
-    font-size: 1rem;
-    font-weight: 500;
-    background: var(--prt-yellow);
-    color: #0a0a0f;
-    padding: 4px 12px;
-    border-radius: 6px;
-    min-width: 52px;
-    text-align: center;
-  }
-
-  .route-name {
-    font-size: 0.85rem;
-    color: var(--muted);
-    font-weight: 300;
-  }
-
+  .route-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+  .route-badge { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; background: var(--prt-yellow); color: #0a0a0f; padding: 4px 12px; border-radius: 6px; min-width: 52px; text-align: center; }
+  .route-name { font-size: 0.85rem; color: var(--muted); font-weight: 300; }
   .departures { display: flex; flex-direction: column; gap: 0.6rem; }
-
-  .departure {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.65rem 0.9rem;
-    background: var(--bg);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-  }
-
-  .dep-dest {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--text);
-    flex: 1;
-  }
-
-  .dep-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .dep-time {
-    font-family: 'DM Mono', monospace;
-    font-size: 0.8rem;
-    color: var(--muted);
-  }
-
-  .dep-mins {
-    font-family: 'DM Mono', monospace;
-    font-size: 1rem;
-    font-weight: 500;
-    min-width: 52px;
-    text-align: right;
-  }
-
+  .departure { display: flex; align-items: center; justify-content: space-between; padding: 0.65rem 0.9rem; background: var(--bg); border-radius: 8px; border: 1px solid var(--border); }
+  .dep-dest { font-size: 0.9rem; font-weight: 400; color: var(--text); flex: 1; }
+  .dep-right { display: flex; align-items: center; gap: 10px; }
+  .dep-time { font-family: 'DM Mono', monospace; font-size: 0.8rem; color: var(--muted); }
+  .dep-mins { font-family: 'DM Mono', monospace; font-size: 1rem; font-weight: 500; min-width: 52px; text-align: right; }
   .dep-mins.due { color: var(--green); }
   .dep-mins.soon { color: var(--accent); }
   .dep-mins.later { color: var(--text); }
   .dep-mins.delayed { color: var(--red); }
-
-  .no-service {
-    font-size: 0.85rem;
-    color: var(--muted);
-    padding: 0.5rem 0;
-    font-style: italic;
-  }
-
-  .error-text {
-    font-size: 0.85rem;
-    color: var(--red);
-    padding: 0.5rem 0;
-  }
-
-  footer {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.72rem;
-    color: var(--muted);
-    font-family: 'DM Mono', monospace;
-  }
+  .no-service { font-size: 0.85rem; color: var(--muted); padding: 0.5rem 0; font-style: italic; }
+  .error-text { font-size: 0.85rem; color: var(--red); padding: 0.5rem 0; }
+  footer { margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 0.72rem; color: var(--muted); font-family: 'DM Mono', monospace; }
 </style>
 </head>
 <body>
@@ -232,35 +76,22 @@
   <div class="stop-section">
     <div class="stop-label">Stop 2571</div>
     <div class="route-card loading" id="card-71A">
-      <div class="route-header">
-        <div class="route-badge">71A</div>
-        <div class="route-name">Loading...</div>
-      </div>
+      <div class="route-header"><div class="route-badge">71A</div><div class="route-name">Loading...</div></div>
       <div class="departures"></div>
     </div>
     <div class="route-card loading" id="card-71C">
-      <div class="route-header">
-        <div class="route-badge">71C</div>
-        <div class="route-name">Loading...</div>
-      </div>
+      <div class="route-header"><div class="route-badge">71C</div><div class="route-name">Loading...</div></div>
       <div class="departures"></div>
     </div>
   </div>
-
   <div class="stop-section">
     <div class="stop-label">Stop 1175</div>
     <div class="route-card loading" id="card-71B">
-      <div class="route-header">
-        <div class="route-badge">71B</div>
-        <div class="route-name">Loading...</div>
-      </div>
+      <div class="route-header"><div class="route-badge">71B</div><div class="route-name">Loading...</div></div>
       <div class="departures"></div>
     </div>
     <div class="route-card loading" id="card-71D">
-      <div class="route-header">
-        <div class="route-badge">71D</div>
-        <div class="route-name">Loading...</div>
-      </div>
+      <div class="route-header"><div class="route-badge">71D</div><div class="route-name">Loading...</div></div>
       <div class="departures"></div>
     </div>
   </div>
@@ -281,30 +112,51 @@ const QUERIES = [
   { route: "71D", stop: "1175" },
 ];
 
-function updateClock() {
-  const now = new Date();
-  document.getElementById("clock").textContent = now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", second: "2-digit" });
+function parsePrdtm(raw) {
+  // Format: "20260407 14:42" - parse manually to avoid browser timezone issues
+  var yy = parseInt(raw.slice(0,4));
+  var mo = parseInt(raw.slice(4,6)) - 1;
+  var dd = parseInt(raw.slice(6,8));
+  var hh = parseInt(raw.slice(9,11));
+  var mn = parseInt(raw.slice(11,13));
+  return new Date(yy, mo, dd, hh, mn, 0);
+}
+
+function formatTime(raw) {
+  var hh = parseInt(raw.slice(9,11));
+  var mn = parseInt(raw.slice(11,13));
+  var ampm = hh >= 12 ? "PM" : "AM";
+  var h12 = hh % 12 || 12;
+  return h12 + ":" + (mn < 10 ? "0" : "") + mn + " " + ampm;
 }
 
 function minsLabel(arr, delayed) {
-  const diff = Math.round((arr - Date.now()) / 60000);
+  var diff = Math.round((arr - Date.now()) / 60000);
   if (delayed) return { text: "Delayed", cls: "delayed" };
   if (diff <= 0) return { text: "Due", cls: "due" };
   if (diff <= 5) return { text: diff + " min", cls: "soon" };
   return { text: diff + " min", cls: "later" };
 }
 
+function updateClock() {
+  var now = new Date();
+  var h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+  var ampm = h >= 12 ? "PM" : "AM";
+  h = h % 12 || 12;
+  document.getElementById("clock").textContent = h + ":" + (m<10?"0":"") + m + ":" + (s<10?"0":"") + s + " " + ampm;
+}
+
 async function fetchRoute(route, stop) {
-  const params = new URLSearchParams({ stpid: stop, rt: route });
-  const res = await fetch(WORKER + "?" + params);
+  var params = new URLSearchParams({ stpid: stop, rt: route });
+  var res = await fetch(WORKER + "?" + params);
   return (await res.json())["bustime-response"];
 }
 
 function renderCard(route, btr) {
-  const card = document.getElementById("card-" + route);
+  var card = document.getElementById("card-" + route);
   card.classList.remove("loading");
-  const header = card.querySelector(".route-header");
-  const deps = card.querySelector(".departures");
+  var header = card.querySelector(".route-header");
+  var deps = card.querySelector(".departures");
 
   if (btr.error) {
     header.innerHTML = '<div class="route-badge">' + route + '</div><div class="route-name">No service</div>';
@@ -312,29 +164,18 @@ function renderCard(route, btr) {
     return;
   }
 
-  const preds = btr.prd || [];
+  var preds = btr.prd || [];
   if (preds.length === 0) {
     deps.innerHTML = '<div class="no-service">No upcoming departures</div>';
     return;
   }
 
-  const stopName = preds[0].stpnm || "";
   header.innerHTML = '<div class="route-badge">' + route + '</div><div class="route-name">to ' + preds[0].des + '</div>';
 
-  deps.innerHTML = preds.map(p => {
-    const raw = p.prdtm;
-    let arr;
-    try {
-      // Handle both "20260407 14:32" and "4/7/2026 14:32" formats
-      if (raw && raw.match(/^\d{8} \d{2}:\d{2}/)) {
-        const y = raw.slice(0,4), mo = raw.slice(4,6), d = raw.slice(6,8), h = raw.slice(9,11), m = raw.slice(11,13);
-        arr = new Date(y + "-" + mo + "-" + d + "T" + h + ":" + m + ":00");
-      } else {
-        arr = new Date(raw);
-      }
-    } catch(e) { arr = new Date(); }
-    const timeStr = isNaN(arr) ? raw : arr.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
-    const ml = isNaN(arr) ? { text: "?", cls: "later" } : minsLabel(arr, p.dly);
+  deps.innerHTML = preds.map(function(p) {
+    var arr = parsePrdtm(p.prdtm);
+    var timeStr = formatTime(p.prdtm);
+    var ml = minsLabel(arr, p.dly);
     return '<div class="departure">' +
       '<div class="dep-dest">' + p.des + '</div>' +
       '<div class="dep-right">' +
@@ -347,22 +188,26 @@ function renderCard(route, btr) {
 
 async function refresh() {
   document.getElementById("status").textContent = "Updating...";
-  const results = await Promise.allSettled(
-    QUERIES.map(q => fetchRoute(q.route, q.stop))
+  var results = await Promise.allSettled(
+    QUERIES.map(function(q) { return fetchRoute(q.route, q.stop); })
   );
-  results.forEach((r, i) => {
+  results.forEach(function(r, i) {
     if (r.status === "fulfilled") {
       renderCard(QUERIES[i].route, r.value);
     } else {
-      const card = document.getElementById("card-" + QUERIES[i].route);
+      var card = document.getElementById("card-" + QUERIES[i].route);
       card.querySelector(".departures").innerHTML = '<div class="error-text">Connection error</div>';
     }
   });
-  document.getElementById("status").textContent = "Updated " + new Date().toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit", second: "2-digit" });
+  var now = new Date();
+  var h = now.getHours(), m = now.getMinutes();
+  var ampm = h >= 12 ? "PM" : "AM";
+  h = h % 12 || 12;
+  document.getElementById("status").textContent = "Updated " + h + ":" + (m<10?"0":"") + m + " " + ampm;
 }
 
-let countdown = 30;
-setInterval(() => {
+var countdown = 30;
+setInterval(function() {
   updateClock();
   countdown--;
   document.getElementById("next-refresh").textContent = "Refreshes in " + countdown + "s";
